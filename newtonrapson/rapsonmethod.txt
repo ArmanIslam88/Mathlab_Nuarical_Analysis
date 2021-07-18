@@ -1,0 +1,21 @@
+clc;
+close all;
+clear al;
+f = input ('\n enter the given function f(x)=');
+df =input ('\n enter the 1st derivative of function df(x)=');
+ddf =input ('\n enter the 2st derivative of function ddf(x)=');
+xl = input ('\n enter initial guess =');
+acc = input ('\n	enter accuracy	=');
+
+while abs ((f(xl)*ddf(xl))/(df(xl))^2)>1
+
+xl =input ('\n enter initial guess again =');
+
+end 
+
+x2=x1-(f(x1)/df(x1));
+while abs (x2-x1)>=acc
+x1=x2;
+x2=x1-(f(x1)/df(x1));
+fprint('\n Root of equation of x2 = %f',x2);
+end
