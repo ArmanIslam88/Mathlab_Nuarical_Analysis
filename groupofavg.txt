@@ -1,0 +1,26 @@
+clc
+syms s t
+x=[0 5 17 15 22 25];
+y=[12 14 17 25 24 30];
+
+d1=floor(length(x)/2);
+
+x1=x(1:d1);
+x2=x(d1+1:end);
+y1=y(1:d1);
+y2=y(d1+1:end);
+
+d2=length(x2);
+
+avg_x1=sum(x1)/d1;
+avg_x2=sum(x2)/d2;
+avg_y1=sum(y1)/d1;
+avg_y2=sum(y2)/d2;
+
+eqn1=s+(t*avg_x1)==avg_y1;
+eqn2=s+(t*avg_x2)==avg_y2;
+[S,T] = equationsToMatrix([eqn1, eqn2], [s, t]);
+X = linsolve(S,T);
+s=X(1);
+t=X(2);
+fprintf('Y = %f + %f x \n',s,t);
